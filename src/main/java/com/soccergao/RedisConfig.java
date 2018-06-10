@@ -1,4 +1,4 @@
-package com.ssc;
+package com.soccergao;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

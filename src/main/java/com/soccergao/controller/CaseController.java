@@ -21,44 +21,45 @@ import com.soccergao.service.CaseService;
 @RestController
 @RequestMapping(value = "case")
 public class CaseController {
-	
+
 	@Autowired
 	private CaseService caseService;
-	
+
 	@GetMapping
-	public ResponseEntity<Page<Case>> search(@RequestParam int page, @RequestParam int size) {
+	public ResponseEntity<Page<Case>> search(@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "10") int size) {
 		Pageable pageable = new PageRequest(page, size);
-		
+
 		Page<Case> c = caseService.search(pageable);
-		
+
 		return ResponseEntity.ok(c);
 	}
-	
+
 	@GetMapping(value = "{id}")
 	public ResponseEntity<Case> get(@PathVariable Long id) {
 		Case c = caseService.get(id);
-		
+
 		return ResponseEntity.ok(c);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<?> add(@RequestBody Case c) {
 		caseService.add(c);
-		
+
 		return ResponseEntity.ok(null);
 	}
-	
+
 	@PutMapping
 	public ResponseEntity<?> update(@RequestBody Case c) {
 		caseService.update(c);
-		
+
 		return ResponseEntity.ok(null);
 	}
-	
+
 	@DeleteMapping(value = "{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		caseService.delete(id);
-		
+
 		return ResponseEntity.ok(null);
 	}
 }
