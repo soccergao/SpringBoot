@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +24,7 @@ public class CaseEntity extends BaseEntity implements Serializable {
 	@Column(name = "CASE_NAME")
 	private String caseName;
 	
-	@OneToMany
-	@JoinColumn(name = "PRODUCT_ID")
+	@OneToMany(mappedBy = "caseEntity")
 	private Set<ProductEntity> productEntity;
 
 	public Long getCaseId() {
