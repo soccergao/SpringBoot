@@ -10,9 +10,9 @@ public interface CaseService {
 
 	Case get(Long id);
 	
-	boolean add(Case c);
+	void add(Case c);
 	
-	boolean update(Case c);
+	void update(Case c);
 	
-	boolean delete(Long id);
+	void delete(Long id);
 }
