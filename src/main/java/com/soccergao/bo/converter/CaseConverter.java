@@ -10,17 +10,25 @@ public class CaseConverter {
 		return CaseConverter::toCase;
 	}
 	
-	public static Case toCase(CaseEntity caseEntity) {
-		Case c = new Case();
-		c.setCaseId(caseEntity.getCaseId());
-		c.setCaseName(caseEntity.getCaseName());
-		return c;
+	public static Case caseEntityToCase(CaseEntity entity) {
+		return toCase(entity);
 	}
 	
-	public static CaseEntity toCaseEntity(Case c) {
+	public static CaseEntity caseToCaseEntity (Case c) {
+		return toCaseEntity(c);
+	}
+	
+	private static CaseEntity toCaseEntity(Case c) {
 		CaseEntity entity = new CaseEntity();
 		entity.setCaseId(c.getCaseId());
 		entity.setCaseName(c.getCaseName());
 		return entity;
+	}
+	
+	private static Case toCase(CaseEntity entity) {
+		Case c = new Case();
+		c.setCaseId(entity.getCaseId());
+		c.setCaseName(entity.getCaseName());
+		return c;
 	}
 }

@@ -15,7 +15,7 @@ import com.soccergao.service.CaseService;
 public class CaseServiceImpl implements CaseService {
 
 	@Autowired
-	CaseRepository caseRepository;
+	private CaseRepository caseRepository;
 	
 	@Override
 	public Page<Case> search(Pageable pageable) {
@@ -26,18 +26,18 @@ public class CaseServiceImpl implements CaseService {
 	@Override
 	public Case get(Long id) {
 		CaseEntity entity = caseRepository.findOne(id);
-		return CaseConverter.toCase(entity);
+		return CaseConverter.caseEntityToCase(entity);
 	}
 
 	@Override
 	public void add(Case c) {
-		CaseEntity entity = CaseConverter.toCaseEntity(c);
+		CaseEntity entity = CaseConverter.caseToCaseEntity(c);
 		caseRepository.save(entity);
 	}
 
 	@Override
 	public void update(Case c) {
-		CaseEntity entity = CaseConverter.toCaseEntity(c);
+		CaseEntity entity = CaseConverter.caseToCaseEntity(c);
 		caseRepository.save(entity);
 	}
 
