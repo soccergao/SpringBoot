@@ -43,10 +43,10 @@ public class CaseController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> add(@RequestBody Case c) {
-		caseService.add(c);
+	public ResponseEntity<Case> add(@RequestBody Case c) {
+		c = caseService.add(c);
 
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(c);
 	}
 
 	@PutMapping

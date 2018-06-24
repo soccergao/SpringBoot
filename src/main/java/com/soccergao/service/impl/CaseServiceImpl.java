@@ -30,9 +30,10 @@ public class CaseServiceImpl implements CaseService {
 	}
 
 	@Override
-	public void add(Case c) {
+	public Case add(Case c) {
 		CaseEntity entity = CaseConverter.caseToCaseEntity(c);
-		caseRepository.save(entity);
+		entity = caseRepository.save(entity);
+		return CaseConverter.caseEntityToCase(entity);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public interface CaseService {
 
 	Case get(Long id);
 	
-	void add(Case c);
+	Case add(Case c);
 	
 	void update(Case c);
 	
