@@ -22,34 +22,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestConfig {
-//	public static CloseableHttpClient acceptsUntrustedCertsHttpClient()
-//			throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
-//		HttpClientBuilder b = HttpClientBuilder.create();
-//
-//		SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
-//			public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
-//				return true;
-//			}
-//		}).build();
-//		b.setSSLContext(sslContext);
-//
-//		HostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
-//
-//		SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
-//		Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-//				.register("http", PlainConnectionSocketFactory.getSocketFactory()).register("https", sslSocketFactory)
-//				.build();
-//
-//		PoolingHttpClientConnectionManager connMgr = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-//		connMgr.setMaxTotal(200);
-//		connMgr.setDefaultMaxPerRoute(100);
-//		b.setConnectionManager(connMgr);
-//
-//		CloseableHttpClient client = b.build();
-//
-//		return client;
-//	}
-
 	@Bean
 	public RestTemplate restTemplate() {
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();

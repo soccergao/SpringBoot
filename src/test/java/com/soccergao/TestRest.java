@@ -3,39 +3,32 @@ package com.soccergao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.soccergao.Application;
 import com.soccergao.bo.Case;
 import com.soccergao.rest.service.RestService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class })
 public class TestRest {
+	private final static Logger logger = LoggerFactory.getLogger(TestRest.class); 
 
 	@Autowired
 	private RestService restService;
 
 	@Test
 	public void testGet() {
-		try {
-			String url1 = "https://www.zhihu.com/api/v4/search_v3?t=general&q=java&correction=1&offset=5&limit=10&search_hash_id=0a0159f4b8374794bc37e562d4c4f498";
-			String resp1 = restService.get(url1, String.class);
-			String url2 = "http://localhost:8080/case/{id}";
-			Case resp2 = restService.get(url2, Case.class, 2);
-			System.out.println("method:Get");
-			System.out.println("url:" + url1);
-			System.out.println("resp: " + resp1);
-			System.out.println("url:" + url2);
-			System.out.println("resp: " + resp2);
-			Assert.assertNotNull(resp1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		String url = "http://localhost:8080/case/{id}";
+		Case resp = restService.get(url, Case.class, 2);
+		logger.info("method:Get");
+		logger.info("url:" + url);
+		logger.info("resp: " + resp);
+		Assert.assertNotNull(resp);
 	}
 
 	@Test
@@ -62,5 +55,5 @@ public class TestRest {
 		Assert.assertNotNull(c);
 		Assert.assertNotNull(c.getCaseId());
 	}
-	 
+
 }
