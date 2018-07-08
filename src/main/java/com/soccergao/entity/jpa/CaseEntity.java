@@ -1,4 +1,4 @@
-package com.soccergao.entity;
+package com.soccergao.entity.jpa;
 
 import java.io.Serializable;
 import java.util.Set;

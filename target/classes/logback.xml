@@ -29,10 +29,14 @@
         </triggeringPolicy>
     </appender> 
     
+    <appender name="MONGODB" class="com.soccergao.util.MongoDBAppender">
+    </appender>
+    
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
+        <appender-ref ref="MONGODB" />
     </root>
     
 </configuration>

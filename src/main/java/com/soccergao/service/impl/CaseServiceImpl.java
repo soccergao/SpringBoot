@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.soccergao.bo.Case;
 import com.soccergao.bo.converter.CaseConverter;
-import com.soccergao.entity.CaseEntity;
+import com.soccergao.entity.jpa.CaseEntity;
 import com.soccergao.repository.jpa.CaseRepository;
 import com.soccergao.service.CaseService;
 

@@ -3,7 +3,7 @@ package com.soccergao.bo.converter;
 import org.springframework.core.convert.converter.Converter;
 
 import com.soccergao.bo.Case;
-import com.soccergao.entity.CaseEntity;
+import com.soccergao.entity.jpa.CaseEntity;
 
 public class CaseConverter {
 	public static Converter<? super CaseEntity, ? extends Case> convert() {
