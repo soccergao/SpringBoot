@@ -1,5 +1,7 @@
 package com.soccergao.service.impl;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,9 @@ public class CaseServiceImpl implements CaseService {
 	@Override
 	public Case get(Long id) {
 		CaseEntity entity = caseRepository.findOne(id);
+		if (entity == null) {
+			throw new EntityNotFoundException(String.format("case(id=%s) not found", id));
+		}
 		return CaseConverter.caseEntityToCase(entity);
 	}
 
