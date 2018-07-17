@@ -28,7 +28,7 @@ public class CaseController {
 	@GetMapping
 	public ResponseEntity<Page<Case>> search(@RequestParam(required = false, defaultValue = "0") int page,
 			@RequestParam(required = false, defaultValue = "10") int size) {
-		Pageable pageable = new PageRequest(page, size);
+		Pageable pageable = PageRequest.of(page, size);
 
 		Page<Case> c = caseService.search(pageable);
 

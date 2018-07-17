@@ -12,6 +12,7 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<String> entityNotFoundExceptionHandler(EntityNotFoundException ex) {
+		ex.printStackTrace();
 		return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 }

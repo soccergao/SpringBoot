@@ -1,6 +1,9 @@
 package com.soccergao.service.impl;
 
+import java.util.Optional;
+
 import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,34 +25,35 @@ public class CaseServiceImpl implements CaseService {
 	@Override
 	public Page<Case> search(Pageable pageable) {
 		Page<CaseEntity> page = caseRepository.findAll(pageable);
- 		return page.map(CaseConverter.convert());
+ 		return page.map(CaseConverter::toCase);
 	}
 
 	@Override
 	public Case get(Long id) {
-		CaseEntity entity = caseRepository.findOne(id);
-		if (entity == null) {
-			throw new EntityNotFoundException(String.format("case(id=%s) not found", id));
-		}
-		return CaseConverter.caseEntityToCase(entity);
+		Optional<CaseEntity> optional = caseRepository.findById(id);
+		CaseEntity entity = optional.orElseThrow(() -> new EntityNotFoundException(String.format("case(%s) not found", id)));
+		return CaseConverter.toCase(entity);
 	}
 
 	@Override
+	@Transactional
 	public Case add(Case c) {
-		CaseEntity entity = CaseConverter.caseToCaseEntity(c);
+		CaseEntity entity = CaseConverter.toCaseEntity(c);
 		entity = caseRepository.save(entity);
-		return CaseConverter.caseEntityToCase(entity);
+		return CaseConverter.toCase(entity);
 	}
 
 	@Override
+	@Transactional
 	public void update(Case c) {
-		CaseEntity entity = CaseConverter.caseToCaseEntity(c);
+		CaseEntity entity = CaseConverter.toCaseEntity(c);
 		caseRepository.save(entity);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) {
-		caseRepository.delete(id);
+		caseRepository.deleteById(id);
 	}
 
 }
