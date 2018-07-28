@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -89,6 +90,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()               // 任何请求,登录后可以访问
                 .authenticated();
     }
+	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.inMemoryAuthentication()
+			.withUser(User
+					.withDefaultPasswordEncoder()
+					.username("user")
+					.password("123456")
+					.roles("USER")
+					.build());
+	}
     
 //    @Bean
 //    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
