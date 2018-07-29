@@ -62,8 +62,7 @@ public class JwtUser implements UserDetails {
 	@Override
 	@JsonIgnore
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	/**

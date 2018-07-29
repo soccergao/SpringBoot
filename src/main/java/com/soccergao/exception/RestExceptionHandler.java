@@ -11,8 +11,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class RestExceptionHandler {
 	
+//	@ExceptionHandler({Exception.class})
+//    public ResponseEntity<String> handleException(Exception e) {
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//    }
+//	
+//	@ExceptionHandler({RuntimeException.class})
+//    public ResponseEntity<String> handleRuntimeException(RuntimeException e) {
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//    }
+	
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<String> entityNotFoundExceptionHandler(EntityNotFoundException ex) {
+	public ResponseEntity<String> handleEntityNotFoundExceptionHandler(EntityNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
 	}
 	
