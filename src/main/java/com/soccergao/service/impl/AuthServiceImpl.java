@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
 		final String rawPassword = user.getPassword();
 		user.setPassword(encoder.encode(rawPassword));
 		user.setLastPasswordResetDate(new Date());
-		user.setRoles(Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
+		user.setRoles(Arrays.asList("ROLE_USER"));
 		return userRepository.insert(user);
 	}
 
